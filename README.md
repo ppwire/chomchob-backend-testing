@@ -1,5 +1,11 @@
 # chomchob-backend-testing
 
+ขอบคุณที่สนใจร่วมงานกับ ChomCHOB
+ทางเรามีโจทย์ให้ทำ 2 ข้อเพื่อทดสอบ coding skill ของคุณ
+
+เมื่อคุณทำโจทย์นี้เส็จแล้วให้ทำการสร้าง repo ตามโครงสร้างในโฟลเดอร์ "example submission" บน github ส่วนตัวของคุณ 
+แล้วส่งลิ้ง repo มาที่ support@chomchob.com (Subject: Backend Engineer Application (2018))
+
 โจทย์จะมี 2 Part คือ
 1. [Programming](#programming)
 2. [Database](#database)
