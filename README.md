@@ -1,8 +1,8 @@
 # chomchob-backend-testing
 
 โจทย์จะมี 2 Part คือ
-1. [Programing (programing.js)](#Programing)
-2. [Database (database.js)](#Database)
+1. [Programing (programing.js)](#programming)
+2. [Database (database.js)](#database)
 
 ---
 
@@ -11,7 +11,7 @@
 
 ---
 
-# Programing
+# Programming
 
   - สร้าง method ใน Person class เพื่อหา friends of friends
 
@@ -57,7 +57,7 @@ implement database of item to meet requirements
   **Bonus**
   
   - item เป็นแบบ shared stock (ไม่ว่าซื้อ item ในราคาไหนจะต้องใช้ stock ของ code ที่เดียวกัน)
-  - item อาจถูกขายแบบ Bundle เช่นขาย ตั้๋วหนังคู่กับป๊อบคอน หรือขาย Starbucks 2 ใบในราคาถูกว่าปกติ
+  - item อาจถูกขายแบบ Bundle เช่นขาย ตั๋วหนังคู่กับป๊อบคอน หรือขาย Starbucks 2 ใบในราคาถูกว่าปกติ
 
   **Hint**
 
