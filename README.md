@@ -1,8 +1,8 @@
 # chomchob-backend-testing
 
 โจทย์จะมี 2 Part คือ
-1. [Programing (programing.js)](#programming)
-2. [Database (database.js)](#database)
+1. [Programming](#programming)
+2. [Database](#database)
 
 ---
 
@@ -70,7 +70,7 @@
   **Bonus**
 
   - item เป็นแบบ shared stock (ไม่ว่าซื้อ item ในราคาไหนจะต้องใช้ stock ของ code ที่เดียวกัน) เช่น มี ไอเท็ม A และ ไอเท็ม B อยู่ในระบบ หากมีลูกค้ามาทำการซื้อ A หรือ B ก็ตาม code ที่ลูกค้าได้รับ จะถูกดึงมาจาก stock เดียวกัน
-  - item อาจถูกขายแบบ Bundle เช่น ขาย สกินตัวละครพร้อมกันสองตัวในราคาพิเศษ  หรือขาย กล่องสุ่มไอเท็ม 5 กล่อง ในราคาถูกว่าปกติ
+  - item อาจถูกขายแบบ Bundle เช่น ขาย สกินตัวละครพร้อมกันสองตัวในราคาพิเศษ  หรือขาย กล่องสุ่มไอเท็ม 5 กล่อง ในราคาถูกกว่าปกติ
 
   **Hint**
 
