@@ -86,6 +86,7 @@
   **Example Model**
 
   ```js
+  // Store User
   const User = sequelize.define('User', {
     id: Sequelize.INTEGER,
     name: Sequelize.STRING,
@@ -98,6 +99,7 @@
     }
   })
 
+  // Store User credit card 
   const UserCard = sequelize.define('UserCard', {
     id: Sequelize.STRING,
     user_id: Sequelize.STRING,
