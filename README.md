@@ -1,87 +1,79 @@
-# chomchob-backend-testing
+# Chomchob Backend Testing
 
-ขอบคุณที่สนใจร่วมงานกับ ChomCHOB
-ทางเรามีโจทย์ให้ทำ 2 ข้อเพื่อทดสอบ coding skill ของคุณ
+Thank you for interest in ChomCHOB
 
-เมื่อคุณทำโจทย์นี้เส็จแล้วให้ทำการสร้าง repo ตามโครงสร้างในโฟลเดอร์ "example submission" บน github ส่วนตัวของคุณ 
-แล้วส่งลิ้ง repo มาที่ support@chomchob.com (Subject: Backend Engineer Application (2018))
+We have 2 part for testing your coding skill.
+When you done this task you need to created repository like in "example submission" folder on your github repository.
+Then, send your repository link to support@chomchob.com with subject Backend Engineer Application (2018).
 
-โจทย์จะมี 2 Part คือ
+This test contain with 2 part.
+
 1. [Programming](#programming)
 2. [Database](#database)
 
 ---
 
 # Note
-- มีเวลาทำโจทย์ 7 วันหลังจากได้รับ email 
+- You have 7 day after receive email to complete this test.
 
 ---
 
 # Programming
 
-  - สร้าง method ใน Person class เพื่อหา friends of friends
+  ### Simple Wallet Api
 
+  **Description**
+  
+  You need to create simple wallet api for transfer cryptocurrency between user A to user B. Also have admin ability to manage both cryptocurrency and exchange rate.
 
-  > **example:**
+  **Requirement**
+
+  - Admin can increase and decrease user cryptocurrency balance.
+  - Admin can see all total balance of all cryptocurrency.
+  - Admin can add other cryptocurrency such XRP, EOS, XLM to wallet.
+  - Admin can manage exchange rate between cryptocurrency.
+  - User can transfer cryptocurrency to other.
+  - User can transfer cryptocurrency to other with difference currency such ETH to BTC with exchange rate.
+  > Example
   >
-  > B เป็นเพื่อนของ A และ C เป็นเพื่อนของ B แล้ว C คือ friends of friends ของ A
-  >
-  > `(A) <-> (B) <-> (C)`
+  > User A transfer 1000 ETH to User B with exchange rate ETH/BTC equal to 0.05 so UserB will recieve 50 BTC
+  - It ok whether cryptocurrency have decimal or not.
 
+  **Technical Detail**
+  - This API need to be written with Nodejs.
+  - You can use any nodejs web framework but we prefer [express](https://expressjs.com/).
+  - You can use any tool or library to help you build API. 
+  - Database we prefer mariadb, but if you think other database is suitable it fine to use that db.
+  - This is **not** decentralized wallet so no need to worry about blockchain stuff.
+  - If some of detail or requirement are ambiguous, we so sorry about that. And feel free to use your creative thinking to do that stuff.
+  
   **Bonus**
-  - TDD 
-  
-  **Hint**
-  - ให้ใช้ Node.js (Javascript) ในการทำโจทย์เท่านั้น โดยห้ามลง lib เพิ่มเติม
-  - Syntax ไม่ต้องถูกต้อง 100% ก็ได้
-  - แก้ไข code ได้ทั้ง class ไม่จำกัดแค่ method
-  - ถ้า A เป็นเพื่อนของ B แล้ว B ก็เป็นเพื่อนของ A ด้วย `(A) <-> (B)` 
-  - เพื่อนของ A ต้องไม่เป็น เพื่อนของเพื่อนของ A ตัวอย่างเช่น 
-    > - B เป็นเพื่อนของ A `(A) <-> (B)`
-    > - D เป็นเพื่อนของ B และ A `(A) <-> (D)`, `(B) <-> (D)`
-    > - ดั้งนั้น D ต้องไม่เป็นเพื่อนของเพื่อนของ A
-    > - ![Alt text](https://fs.chomchob.com/file/image?path=/admin/upload/2018-06-08/dfd301fb-a2e7-43b1-addb-d119ac2a3e02)
-  ```js
-  class Person {
-  
-    constructor() {
-      this.name = ''
-      this.friends = []
-      // variable เพิ่มเติม(ถ้ามี) ...
-    }
-
-    friendsOfFriends() {
-      return [] // array ชื่อเพื่อนของเพื่อนทั้งหมด
-    }
-
-    // method เพิ่มเติม(ถ้ามี) ...
-  }
-  ```
+  - TDD
+  - Deploy to cloud such as aws or gcp.
 
 
 ---
 
 # Database
 
-สมมติสถานการณ์ว่า 
-คุณได้รับมอบหมายให้ออกแบบ Database ของระบบขาย code item สำหรับเกมต่างๆ 
-ซึ่งคอยให้บริการแก่ลูกค้าที่ต้องการเข้ามาซื้อ code ไปเติมในเกม
 
-  **โดยมีรายละเอียดดังนี้**
+You have assign to design Database for sale item code system for game
+this provide for customer who want to buy code for using in game.
+
+  **Detail**
   
-  - item ที่ขายจะต้องมี ชื่อสินค้า, รายละเอียดสินค้า, ราคาขาย, วันที่เปิดขาย, วันที่เลิกขาย
-  - เมื่อลูกค้าซื้อ Item แล้วจะได้รับเป็น code (โดย code อาจถูกบันทึกไว้ล่วงหน้า หรือ อาจถูกสร้างหลังจากซื้อ ก็ได้)
-  - item สามารถจัดโปรโมชั่นลดราคาในช่วงเวลาที่กำหนดได้ เช่น ปกติ ราคา 150 บาท จัดโปรเดือนมกราคม ลดราคาเป็น 100 บาท
+  - Item for sale must have product name, product detail, sale price, open sale date, end sale date.
+  - When customer already bought an item, customer will receive code (code can be created or create after bought).
+  - item have a discount promotion period with specific date time for example normal price is 150 baht and have a promotion on January and set discounted price to 100 baht.
 
   **Bonus**
 
-  - item เป็นแบบ shared stock (ไม่ว่าซื้อ item ในราคาไหนจะต้องใช้ stock ของ code ที่เดียวกัน) เช่น มี ไอเท็ม A และ ไอเท็ม B อยู่ในระบบ หากมีลูกค้ามาทำการซื้อ A หรือ B ก็ตาม code ที่ลูกค้าได้รับ จะถูกดึงมาจาก stock เดียวกัน
-  - item อาจถูกขายแบบ Bundle เช่น ขาย สกินตัวละครพร้อมกันสองตัวในราคาพิเศษ  หรือขาย กล่องสุ่มไอเท็ม 5 กล่อง ในราคาถูกกว่าปกติ
+  - Item type shared stock (no matter how you buy item on which price, it suppose to use code on same stock) for example, have an item A and B on system when it sold either item A or item B, code that customer will receive come from same stock.
+  - item may sale in bundle type for example sale two difference character skin set in special price or sale five gachapon box (for random item) in special price.
 
   **Hint**
 
-  - สร้าง database ในรูปแบบของ model จาก ["sequelize"](https://github.com/sequelize/sequelize)
-
+  - Create database in form of model from [sequelize](https://github.com/sequelize/sequelize)
   
   **Example Model**
 
@@ -113,4 +105,8 @@
     }
   })
   ```
+  
+  **Hint2**
+
+  - You can see database part in [thai language](translate/THAI_DB.md) for better understanding.
 
