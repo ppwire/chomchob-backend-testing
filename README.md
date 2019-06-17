@@ -4,9 +4,9 @@ Thank you for interest in ChomCHOB
 
 We have 2 part for testing your coding skill.
 When you done this task you need to created repository like in "example submission" folder on your github repository.
-Then, send your repository link to support@chomchob.com with subject Backend Engineer Application (2018).
+Then, send your repository link to support@chomchob.com with subject Backend Engineer Application.
 
-This test contain with 2 part.
+This test contain with __2 part.__
 
 1. [Programming](#programming)
 2. [Database](#database)
