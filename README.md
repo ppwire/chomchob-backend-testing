@@ -70,11 +70,12 @@ this provide for customer who want to buy code for using in game.
 
   - item may sale in bundle type for example sale two difference character skin set in special price or sale five gachapon box (for random item) in special price.
 
-  **Hint**
+  **Objective**
 
-  - Create database in form of model from [sequelize](https://github.com/sequelize/sequelize)
+  - Create database in form of model from [sequelize.](https://github.com/sequelize/sequelize)
+  - Create Entity Relationship Diagram (ERD) and provide us with picture or pdf format. You can create ERD with any tool you want even handwriting is fine.
   
-  **Example Model**
+  **Example Sequelize Model**
 
   ```js
   // Store User
@@ -90,8 +91,8 @@ this provide for customer who want to buy code for using in game.
 
   // Store User credit card 
   const UserCard = sequelize.define('UserCard', {
-    id: Sequelize.STRING,
-    user_id: Sequelize.STRING,
+    id: Sequelize.INTEGER,
+    user_id: Sequelize.INTEGER,
     mask_pan: Sequelize.STRING,
   })
 
@@ -99,8 +100,12 @@ this provide for customer who want to buy code for using in game.
     UserCard.belongsTo(User, { foreignKey: 'user_id' })
   }
   ```
+
+  **Example Entity Relationship Diagram**
+
+  ![ERD](image/ERD.png)
+
   
-  **Hint2**
+  **Hint**
 
   - You can see database part in [thai language](translate/THAI_DB.md) for better understanding.
-
