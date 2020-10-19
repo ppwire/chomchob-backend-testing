@@ -44,6 +44,7 @@ This test contain with __2 part.__
   - You can use any nodejs web framework but we prefer [express](https://expressjs.com/).
   - You can use any tool or library to help you build API. 
   - Database we prefer mariadb, but if you think other database is suitable it fine to use that db.
+  - Please provide us [POSTMAN](https://www.postman.com/) collection and environment(if needed) in JSON format.
   - This is **not** decentralized wallet so no need to worry about blockchain stuff.
   - If some of detail or requirement are ambiguous, we so sorry about that. And feel free to use your creative thinking to do that stuff.
   
