@@ -75,6 +75,7 @@ this provide for customer who want to buy code for using in game.
 
   - Create database in form of model from [sequelize.](https://github.com/sequelize/sequelize)
   - Create Entity Relationship Diagram (ERD) and provide us with picture or pdf format. You can create ERD with any tool you want even handwriting is fine.
+  - Please provide us description why you design database like this, for clearly understand.
   
   **Example Sequelize Model**
 
