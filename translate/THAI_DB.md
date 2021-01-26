@@ -18,6 +18,7 @@
 
   - สร้าง database ในรูปแบบของ model จาก [sequelize.](https://github.com/sequelize/sequelize)
   - วาด Entity Relationship Diagram (ERD) ออกมาแล้วส่งมาเป็นภาพหรือ pdf จะใช้ tool อะไรก็ได้ หรือจะเขียนมือส่งมาก็ไม่เป็นไร
+  - ช่วยส่งรายละเอียดอธิบายว่าทำไมถึงออกแบบ Database ออกมาแบบนี้ เพื่อให้เราเข้าใจกันมากขึ้น :heart:
 
   **ตัวอย่าง Sequelize Model**
 
