@@ -31,11 +31,14 @@ This test contain with __2 part.__
   - Admin can see all total balance of all cryptocurrency.
   - Admin can add other cryptocurrency such XRP, EOS, XLM to wallet.
   - Admin can manage exchange rate between cryptocurrency.
-  - User can transfer cryptocurrency to other.
+  - User can transfer same cryptocurrency to other.
+  > Example
+  >
+  > UserA transfer 10 ETH to UserB so UserB will recieve 10 ETH
   - User can transfer cryptocurrency to other with difference currency such ETH to BTC with exchange rate.
   > Example
   >
-  > User A transfer 1000 ETH to User B with exchange rate ETH/BTC equal to 0.05 so UserB will recieve 50 BTC
+  > UserA transfer 1000 ETH to UserB with exchange rate ETH/BTC equal to 0.05 so UserB will recieve 50 BTC
   - It ok whether cryptocurrency have decimal or not.
 
   **Technical Detail**
