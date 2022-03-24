@@ -1,28 +1,39 @@
 import express from 'express';
-import User from '../models/user.js'
+import sequelize from '../db.js';
 import crypto from 'crypto'
 import 'dotenv/config'
-const user = express.Router()
+const router = express.Router()
+const { user } = sequelize.models
 
-user.post('/', async (req, res) => {
-   const { username, password } = req.body
-   const isDuplicate = await User.findOne({
-      where: {
+router.post('/', async (req, res) => {
+   try {
+      const { username, password, role } = req.body
+      const isDuplicate = await user.findOne({
+         where: {
+            username: username,
+         }
+      })
+      if (isDuplicate) return res.status(400).send('Duplicate username')
+      const hashPassword = crypto.scryptSync(password, process.env.SALT, 20).toString(`hex`)
+      await user.create({
          username: username,
-         isActive: true
-      }
-   })
-   if (isDuplicate)  return res.status(400).send('Duplicate username')
-   const hashPassword = crypto.scryptSync(password, process.env.SALT, 20).toString(`hex`)
-   await User.create({
-      username: username,
-      password: hashPassword
-   })
-   res.status(200).send('Created user successfully')
+         password: hashPassword,
+         role: (role) ? role : 'user'
+      })
+      res.status(200).send('Created user successfully')
+   } catch (err) {
+      console.error(err)
+      res.sendStatus(500)
+   }
 })
 
-user.get('/', async (req, res) => {
-   const result = await User.findAll()
-   res.send(result)
+router.get('/', async (req, res) => {
+   try {
+      const result = await user.findAll()
+      res.send(result)
+   } catch (err) {
+      console.error(err)
+      res.sendStatus(500)
+   }
 })
-export default user;
+export default router;

@@ -1,17 +1,22 @@
 import express from 'express';
 import jwt from '../util/jwt.js'
-import User from '../models/user.js'
+import sequelize from '../db.js';
 import 'dotenv/config'
+const { user } = sequelize.models
+const router = express.Router()
 
-const auth = express.Router()
-
-auth.post('/', async (req, res) => {
-   const { username, password } = req.body
-   const user = await User.findOne({ where: { username: username } })
-   if (!user) return res.status(400).send('Username or password is incorrect')
-   if (!jwt.verifyPassword(user.password, password)) return res.status(400).send('Username or password is incorrect')
-   const token = jwt.generateJwtToken(username)
-   res.send(token)
+router.post('/', async (req, res) => {
+   try {
+      const { username, password } = req.body
+      const userResult = await user.findOne({ where: { username: username } })
+      if (!userResult) return res.status(400).send('Username or password is incorrect')
+      if (!jwt.verifyPassword(userResult.password, password)) return res.status(400).send('Username or password is incorrect')
+      const token = jwt.generateJwtToken({ username: userResult.username, role: userResult.role })
+      res.send(token)
+   } catch (err) {
+      console.error(err)
+      res.sendStatus(500)
+   }
 })
 
-export default auth;
+export default router;
