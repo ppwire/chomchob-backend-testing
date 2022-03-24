@@ -1,6 +1,7 @@
 import express from 'express';
 import sequelize from '../db.js';
 import crypto from 'crypto'
+import jwt from '../util/jwt.js'
 import 'dotenv/config'
 const router = express.Router()
 const { user } = sequelize.models
@@ -27,7 +28,7 @@ router.post('/', async (req, res) => {
    }
 })
 
-router.get('/', async (req, res) => {
+router.get('/', jwt.verifyAdmin, async (req, res) => {
    try {
       const result = await user.findAll()
       res.send(result)
