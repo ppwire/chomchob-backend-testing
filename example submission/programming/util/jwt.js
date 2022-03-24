@@ -1,11 +1,15 @@
 import jsonwebtoken from 'jsonwebtoken';
 import crypto from 'crypto'
+import sequelize from '../db.js'
 import 'dotenv/config'
+
+const { user } = sequelize.models
 
 export default {
    generateJwtToken(key) {
       return jsonwebtoken.sign(key, process.env.SECRET)
    },
+
    authenticateToken(req, res, next) {
       const authHeader = req.headers['authorization']
       const token = authHeader && authHeader.split('Bearer ')[1]
@@ -17,6 +21,14 @@ export default {
          next()
       })
    },
+
+   verifyAdmin(req, res, next) {
+      if (req.user.role !== 'admin') return res.sendStatus(403)
+      const findUser = user.findOne({ where: { username: req.user.username, isActive: 1 } })
+      if (!findUser) return res.sendStatus(404)
+      next()
+   },
+
    verifyPassword(validPassword, password) {
       const hashPassword = crypto.scryptSync(password, process.env.SALT, 20).toString(`hex`)
       console.log(validPassword)
