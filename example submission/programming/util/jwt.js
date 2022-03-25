@@ -6,6 +6,7 @@ import 'dotenv/config'
 const { user } = sequelize.models
 
 export default {
+   
    generateJwtToken(key) {
       return jsonwebtoken.sign(key, process.env.SECRET, {
          expiresIn: "1h"
@@ -23,8 +24,6 @@ export default {
          next()
       })
    },
-
-
 
    verifyAdmin(req, res, next) {
       if (req.user.role !== 'admin') return res.sendStatus(403)
