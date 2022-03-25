@@ -10,3 +10,21 @@ services:
       MARIADB_ROOT_PASSWORD: example
     ports:
       - 3306:3306
+    networks:
+      - docker-service
+  wallet-api:
+    build: ./example submission/programming
+    restart: always
+    environment:
+      SECRET: cdc2b28d4c7a9f9943f09fef199205b1
+      SALT: a11a63e845e1f0987ee7b89a03d94987ab
+      DB_USER: root
+      DB_PW: example
+    ports:
+      - 4000:4000
+    networks:
+      - docker-service
+
+networks:
+  docker-service:
+    driver: bridge

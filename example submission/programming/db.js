@@ -3,6 +3,7 @@ import 'dotenv/config'
 
 const sequelize = new Sequelize('crypto',
    process.env.DB_USER, process.env.DB_PW, {
+   host: 'database',
    dialect: 'mariadb',
    define: {
       freezeTableName: true,

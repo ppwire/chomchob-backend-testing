@@ -34,8 +34,6 @@ export default {
 
    verifyPassword(validPassword, password) {
       const hashPassword = crypto.scryptSync(password, process.env.SALT, 20).toString(`hex`)
-      console.log(validPassword)
-      console.log(hashPassword)
       return validPassword === hashPassword
    }
 }
