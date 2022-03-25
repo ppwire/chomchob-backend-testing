@@ -44,7 +44,7 @@ router.put('/', jwt.verifyAdmin, async (req, res) => {
 router.get('/', jwt.verifyAdmin, async (req, res) => {
    try {
       let result
-      if (req.query) {
+      if (Object.keys(req.query).length !== 0) {
          result = await wallet.findOne({
             where: req.query
          })

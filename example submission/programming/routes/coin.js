@@ -31,4 +31,22 @@ router.post('/', jwt.verifyAdmin, async (req, res) => {
    }
 })
 
+router.get('/', async (req, res) => {
+   try {
+      let result
+      if (Object.keys(req.query).length !== 0) {
+         result = await coin.findOne({
+            where: req.query
+         })
+      } else {
+         result = await coin.findAll()
+         console.log('test')
+      }
+      return res.send(result)
+   } catch (error) {
+      console.error(err)
+      return res.sendStatus(500)
+   }
+})
+
 export default router

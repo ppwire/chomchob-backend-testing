@@ -30,7 +30,14 @@ router.post('/', async (req, res) => {
 
 router.get('/', jwt.authenticateToken, jwt.verifyAdmin, async (req, res) => {
    try {
-      const result = await user.findAll()
+      let result
+      if (Object.keys(req.query).length !== 0) {
+         result = await user.findOne({
+            where: req.query
+         })
+      } else {
+         result = await user.findAll()
+      }
       return res.send(result)
    } catch (err) {
       console.error(err)
