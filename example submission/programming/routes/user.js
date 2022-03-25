@@ -21,20 +21,20 @@ router.post('/', async (req, res) => {
          password: hashPassword,
          role: (role) ? role : 'user'
       })
-      res.status(200).send('Created user successfully')
+      return res.status(200).send('Created user successfully')
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 
-router.get('/', jwt.verifyAdmin, async (req, res) => {
+router.get('/', jwt.authenticateToken, jwt.verifyAdmin, async (req, res) => {
    try {
       const result = await user.findAll()
-      res.send(result)
+      return res.send(result)
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 export default router;

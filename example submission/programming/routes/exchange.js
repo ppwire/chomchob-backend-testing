@@ -1,18 +1,18 @@
-import e from 'express';
+
 import express from 'express';
-import sequelize from '../db';
+import sequelize from '../db.js';
 import jwt from '../util/jwt.js';
-const { Op } = require('@sequelize/core');
+import { Op } from 'sequelize'
 const { exchange } = sequelize.models
 const router = express.Router()
 
 router.get('/', jwt.verifyAdmin, async (req, res) => {
    try {
       const findExchange = await exchange.findAll()
-      res.send(findExchange)
+      return res.send(findExchange)
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 
@@ -22,7 +22,7 @@ router.put('/', jwt.verifyAdmin, async (req, res) => {
 
       const findExchange = await exchange.findOne({
          where: {
-            [Op.and]: [
+            [Op.or]: [
                {
                   primaryCoin: primaryCoin,
                   secondaryCoin: secondaryCoin
@@ -43,10 +43,10 @@ router.put('/', jwt.verifyAdmin, async (req, res) => {
          findExchange.rate = 1 / rate
       }
       await findExchange.save()
-      res.status(200).send("Update exchange completed")
+      return res.status(200).send("Update exchange completed")
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 

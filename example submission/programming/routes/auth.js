@@ -12,10 +12,10 @@ router.post('/', async (req, res) => {
       if (!userResult) return res.status(400).send('Username or password is incorrect')
       if (!jwt.verifyPassword(userResult.password, password)) return res.status(400).send('Username or password is incorrect')
       const token = jwt.generateJwtToken({ username: userResult.username, role: userResult.role })
-      res.send(token)
+      return res.send(token)
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 

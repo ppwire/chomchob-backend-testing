@@ -1,33 +1,43 @@
 import express from 'express';
 import jwt from '../util/jwt.js'
 import sequelize from '../db.js';
-const { Op } = require('@sequelize/core');
-const { wallet, exchange } = sequelize.models
+import { Op } from 'sequelize'
+const { wallet, exchange, coin } = sequelize.models
 const router = express.Router();
 
 router.post('/', jwt.verifyAdmin, async (req, res) => {
    try {
       await wallet.create(req.body)
-      res.status(200).send("Created wallet successfully")
+      return res.status(200).send("Created wallet successfully")
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 
 router.put('/', jwt.verifyAdmin, async (req, res) => {
    try {
-      const result = await wallet.update(req.body, {
+      const { coinName, userUsername } = req.body
+
+      const findCoin = await coin.findOne({
          where: {
-            userUsername: req.body.userUsername,
-            coinName: req.body.coinName
+            name: coinName
          }
       })
-      if (result) res.status(200).send("Updated wallet successfully")
-      else res.status.send("Nothing has updated")
+
+      if (!findCoin) return res.status(404).send("Coin is not exist")
+
+      await wallet.update(req.body, {
+         where: {
+            userUsername: userUsername,
+            coinName: coinName
+         }
+      })
+
+      return res.status(200).send("Updated wallet successfully")
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 
@@ -41,10 +51,24 @@ router.get('/', jwt.verifyAdmin, async (req, res) => {
       } else {
          result = await wallet.findAll()
       }
-      res.status(200).send(result)
+      return res.status(200).send(result)
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
+   }
+})
+
+router.get('/myown', async (req, res) => {
+   try {
+      const result = await wallet.findOne({
+         where: {
+            userUsername: req.user.username
+         }
+      })
+      return res.status(200).send(result)
+   } catch (err) {
+      console.error(err)
+      return res.sendStatus(500)
    }
 })
 
@@ -73,7 +97,7 @@ router.post('/transfer', async (req, res) => {
 
       const findExchange = await exchange.findOne({
          where: {
-            [Op.and]: [
+            [Op.or]: [
                {
                   primaryCoin: srcCoinName,
                   secondaryCoin: desCoinName
@@ -88,7 +112,9 @@ router.post('/transfer', async (req, res) => {
 
       let rate
       if (!findExchange) return res.status(404).send('Exchange not found')
+      // primaryCoin is a source
       if (findExchange.primaryCoin === srcCoinName) rate = findExchange.rate
+      // secondaryCoin is a source
       else if (findExchange.secondaryCoin === srcCoinName) rate = 1 / findExchange.rate
 
       srcWallet.balance = srcWallet.balance - srcBalance
@@ -97,10 +123,10 @@ router.post('/transfer', async (req, res) => {
       await srcWallet.save()
       await desWallet.save()
 
-      res.status(200).send("Tranfered completed")
+      return res.status(200).send("Tranfered completed")
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 

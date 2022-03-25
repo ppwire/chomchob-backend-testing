@@ -24,10 +24,10 @@ router.post('/', jwt.verifyAdmin, async (req, res) => {
          }
       }
       await coin.create(req.body)
-      res.status(200).send('Created coin successfully')
+      return res.status(200).send('Created coin successfully')
    } catch (err) {
       console.error(err)
-      res.sendStatus(500)
+      return res.sendStatus(500)
    }
 })
 

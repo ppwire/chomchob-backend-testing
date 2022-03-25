@@ -49,10 +49,12 @@ const Exchange = sequelize.define('exchange', {
    primaryCoin: {
       type: Sequelize.STRING,
       primaryKey: true,
+      comment: "The sourceCoin"
    },
    secondaryCoin: {
       type: Sequelize.STRING,
       primaryKey: true,
+      comment: "The receiverCoin"
    },
    rate: {
       type: Sequelize.FLOAT
@@ -62,6 +64,6 @@ const Exchange = sequelize.define('exchange', {
 User.belongsToMany(Coin, { through: Wallet })
 Coin.belongsToMany(User, { through: Wallet })
 
-sequelize.sync({ force: true })
+sequelize.sync()
 
 export default sequelize
