@@ -8,7 +8,7 @@ const router = express.Router()
 router.post('/', async (req, res) => {
    try {
       const { username, password } = req.body
-      const userResult = await user.findOne({ where: { username: username } })
+      const userResult = await user.findOne({ where: { username: username, isActive: true } })
       if (!userResult) return res.status(400).send('Username or password is incorrect')
       if (!jwt.verifyPassword(userResult.password, password)) return res.status(400).send('Username or password is incorrect')
       const token = jwt.generateJwtToken({ username: userResult.username, role: userResult.role })
