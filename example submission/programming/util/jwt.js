@@ -7,7 +7,9 @@ const { user } = sequelize.models
 
 export default {
    generateJwtToken(key) {
-      return jsonwebtoken.sign(key, process.env.SECRET)
+      return jsonwebtoken.sign(key, process.env.SECRET, {
+         expiresIn: "1h"
+      })
    },
 
    authenticateToken(req, res, next) {
@@ -21,6 +23,8 @@ export default {
          next()
       })
    },
+
+
 
    verifyAdmin(req, res, next) {
       if (req.user.role !== 'admin') return res.sendStatus(403)
