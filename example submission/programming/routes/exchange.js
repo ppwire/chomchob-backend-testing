@@ -1,12 +1,10 @@
-
 import express from 'express';
 import sequelize from '../db.js';
-import jwt from '../util/jwt.js';
 import { Op } from 'sequelize'
 const { exchange } = sequelize.models
 const router = express.Router()
 
-router.get('/', jwt.verifyAdmin, async (req, res) => {
+router.get('/', async (req, res) => {
    try {
       const findExchange = await exchange.findAll()
       return res.send(findExchange)
@@ -16,7 +14,7 @@ router.get('/', jwt.verifyAdmin, async (req, res) => {
    }
 })
 
-router.put('/', jwt.verifyAdmin, async (req, res) => {
+router.patch('/', async (req, res) => {
    try {
       const { primaryCoin, secondaryCoin, rate } = req.body
 

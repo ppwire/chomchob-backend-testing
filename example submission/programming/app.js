@@ -15,5 +15,5 @@ app.use('/auth', auth)
 app.use('/user', user)
 app.use('/coin', jwt.authenticateToken, coin)
 app.use('/wallet', jwt.authenticateToken, wallet)
-app.use('/exchange', jwt.authenticateToken, exchange)
+app.use('/exchange', jwt.authenticateToken, jwt.verifyAdmin, exchange)
 export default app
