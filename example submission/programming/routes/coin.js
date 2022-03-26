@@ -19,6 +19,7 @@ router.post('/', jwt.verifyAdmin, async (req, res) => {
             await exchange.create({
                primaryCoin: name,
                secondaryCoin: coin.name,
+               //DEFAULT exchange rate is 1 
                rate: 1
             })
          }
