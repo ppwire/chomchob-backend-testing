@@ -15,7 +15,18 @@ const Item = sequelize.define('item', {
       type: Sequelize.STRING,
       allowNull: true
    },
-   
+   price: {
+      type: Sequelize.INTEGER,
+      allowNull: false
+   },
+   startDate: {
+      type: Sequelize.DATE,
+      allowNull: false
+   },
+   endDate: {
+      type: Sequelize.DATE,
+      allowNull: false
+   }
 })
 
 export default Item

@@ -1,22 +1,24 @@
 import sequelize from "../db.js";
 import Sequelize from "sequelize";
 
-const Product = sequelize.define('product', {
+const Promotion = sequelize.define('promotion', {
    id: {
       type: Sequelize.UUID,
       primaryKey: true,
       defaultValue: Sequelize.UUIDV4
    },
-   price: {
-      type: Sequelize.INTEGER,
+   rate: {
+      type: Sequelize.FLOAT,
       allowNull: false
    },
    startDate: {
-      type: Sequelize.DATE
+      type: Sequelize.DATE,
+      allowNull: false
    },
    endDate: {
-      type: Sequelize.DATE
+      type: Sequelize.DATE,
+      allowNull: false
    }
 })
 
-export default Product;
+export default Promotion;
