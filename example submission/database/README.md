@@ -6,8 +6,11 @@
   นาย John ซื้อ bundle แพ็คคู่ของ godfrey และ godwyn รหัส bundleId = "sad2"
   สร้างข้อมูลใน table code =>
   {
-   id:"12907as90d" (auto generate)
-   customerId:"asdwqajo" (id คุณ john)
-   bundleId : "sad2"
-   itemId:null
+  id:"12907as90d" (auto generate)
+  customerId:"asdwqajo" (id คุณ john)
+  bundleId : "sad2"
+  itemId:null
   }
+
+**ERD Image**
+![ERD](ERD.png)
